@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitPulse Gym System - Frontend</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>⚡ FitPulse Gym System</h1>
+        <p>Modulo Frontend - Muestra e Interfaz de Usuario</p>
+    </header>
+
+    <main class="contenedor">
+        <!-- Formulario 1: Registro de Socio (HU-01) -->
+        <section class="tarjeta">
+            <h2>👤 Registrar Nuevo Socio</h2>
+            <form id="form-socio">
+                <label>Nombre Completo:</label>
+                <input type="text" placeholder="Ej. Juan Pérez" required>
+
+                <label>DNI:</label>
+                <input type="text" placeholder="Ej. 72819043" required>
+
+                <label>Membresía:</label>
+                <select>
+                    <option>Plan Mensual</option>
+                    <option>Plan Semestral</option>
+                    <option>Plan Anual</option>
+                </select>
+
+                <button type="submit">Guardar Socio</button>
+            </form>
+        </section>
+
+        <!-- Formulario 2: Control de Acceso (HU-02) -->
+        <section class="tarjeta">
+            <h2>🔑 Control de Acceso</h2>
+            <form id="form-acceso">
+                <label>DNI del Socio:</label>
+                <input type="text" id="dni-ingreso" placeholder="Ingrese DNI" required>
+
+                <button type="submit" class="btn-acceso">Verificar Ingreso</button>
+            </form>
+            <div id="mensaje-estado" class="estado-box"></div>
+        </section>
+
+        <!-- Modulo 3: Asignacion de Rutinas (HU-03) -->
+        <section class="tarjeta">
+            <h2>🏋️ Consultar Rutina de Socio</h2>
+            <form id="form-rutina">
+                <label>DNI o Socio:</label>
+                <input type="text" id="socio-rutina" placeholder="Ingrese DNI del socio" required>
+
+                <button type="submit" class="btn-rutina">Buscar Rutina</button>
+            </form>
+            <div id="detalle-rutina" style="margin-top: 15px; display: none;">
+                <h4>Rutina Semanal:</h4>
+                <ul>
+                    <li><strong>Lunes:</strong> Pecho y Tríceps (4x12)</li>
+                    <li><strong>Miércoles:</strong> Espalda y Bíceps (4x10)</li>
+                    <li><strong>Viernes:</strong> Piernas y Hombros (4x15)</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('form-socio').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Socio registrado exitosamente en el sistema!');
+            this.reset();
+        });
+
+        document.getElementById('form-acceso').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const dni = document.getElementById('dni-ingreso').value;
+            const estado = document.getElementById('mensaje-estado');
+            
+            estado.style.display = 'block';
+            estado.style.backgroundColor = '#d4edda';
+            estado.style.color = '#155724';
+            estado.innerHTML = '✔ ACCESO PERMITIDO - Membresía Activa (DNI: ' + dni + ')';
+        });
+
+        document.getElementById('form-rutina').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('detalle-rutina').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
